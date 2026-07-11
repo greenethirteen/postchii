@@ -12,6 +12,8 @@ function getBrowser() {
   if (!browserPromise) {
     const puppeteer = require('puppeteer');
     browserPromise = puppeteer.launch({
+      // In the Docker image, PUPPETEER_EXECUTABLE_PATH points at system Chromium.
+      executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || undefined,
       args: ['--no-sandbox', '--disable-setuid-sandbox'],
     });
   }

@@ -32,11 +32,14 @@ module.exports = {
 
   // When a service account is configured, Firestore + Cloud Storage back the
   // app. Without it we fall back to local SQLite so the bot still runs.
+  // Locally: FIREBASE_SERVICE_ACCOUNT=./serviceAccount.json (a file path).
+  // Deployed: FIREBASE_SERVICE_ACCOUNT_JSON=<the JSON itself> (no file on disk).
   firebase: {
     serviceAccountPath: process.env.FIREBASE_SERVICE_ACCOUNT || null,
+    serviceAccountJson: process.env.FIREBASE_SERVICE_ACCOUNT_JSON || null,
     storageBucket: process.env.FIREBASE_STORAGE_BUCKET || null,
     get enabled() {
-      return Boolean(this.serviceAccountPath);
+      return Boolean(this.serviceAccountPath || this.serviceAccountJson);
     },
   },
 
