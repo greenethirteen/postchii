@@ -1,5 +1,5 @@
 // Upload-Post client (https://docs.upload-post.com) — real social publishing.
-// Each PostChii user maps to an Upload-Post "profile" (username pc_<userId>);
+// Each Mochii user maps to an Upload-Post "profile" (username pc_<userId>);
 // users connect their social accounts through a hosted link, then we post
 // on their behalf.
 const config = require('../config');

@@ -17,7 +17,7 @@ export default function Home() {
     <>
       <section className="hero" id="early">
         <div>
-          <span className="eyebrow">🍡 PostChii — early access</span>
+          <span className="eyebrow">🍡 Mochii — early access</span>
           <h1>
             Send a text.
             <br />
@@ -34,7 +34,7 @@ export default function Home() {
           <div className="tg-head">
             <span className="tg-ava">🍡</span>
             <div>
-              <b>PostChii</b>
+              <b>Mochii</b>
               <i>bot · online</i>
             </div>
           </div>
@@ -53,7 +53,7 @@ export default function Home() {
               <i />
             </div>
 
-            <div className="tg-note n2">2 · PostChii designs the post — with your photo</div>
+            <div className="tg-note n2">2 · Mochii designs the post — with your photo</div>
             <div className="tg-msg in m2">
               <div className="tg-post">
                 <div className="tg-art">
@@ -119,14 +119,14 @@ export default function Home() {
       </section>
 
       <div className="pain-band">
-        <p className="pain-kicker">Why PostChii</p>
+        <p className="pain-kicker">Why Mochii</p>
         <h2>
           Post in <span className="grad-text">30 seconds</span>, not 2 hours.
         </h2>
         <p className="pain-sub">No design tools. No copy-paste. No missed posts.</p>
         <div className="vs-grid">
           <div className="vs bad">
-            <h4>Without PostChii</h4>
+            <h4>Without Mochii</h4>
             <div className="chain">
               <span>🎨 Design it</span>
               <i>→</i>
@@ -143,11 +143,11 @@ export default function Home() {
             <div className="vs-time">≈ 2 hours per post 😮‍💨</div>
           </div>
           <div className="vs good">
-            <h4>With PostChii</h4>
+            <h4>With Mochii</h4>
             <div className="chain">
               <span>💬 One text</span>
               <i>→</i>
-              <span>🍡 PostChii</span>
+              <span>🍡 Mochii</span>
               <i>→</i>
               <span className="win">✅ Live everywhere</span>
             </div>
@@ -278,7 +278,7 @@ export default function Home() {
             <span className="nico">🚀</span>
             <h3>Everywhere at once</h3>
             <p>
-              Approve in Telegram and PostChii posts it — Instagram, LinkedIn, Facebook, or
+              Approve in Telegram and Mochii posts it — Instagram, LinkedIn, Facebook, or
               straight through your integrations.
             </p>
           </div>
@@ -309,7 +309,7 @@ export default function Home() {
             <h3>
               Promote winners <em className="soon-pill">coming soon</em>
             </h3>
-            <p>Boost a post into an ad without leaving the chat. Set a budget, PostChii does the rest.</p>
+            <p>Boost a post into an ad without leaving the chat. Set a budget, Mochii does the rest.</p>
             <div className="budget-row">
               🚀 Boost · £50
               <span className="bar">
@@ -379,13 +379,13 @@ export default function Home() {
       <section className="section">
         <p className="kicker">Why not just ChatGPT?</p>
         <h2 className="section-title">
-          ChatGPT writes text. <span className="grad-text">PostChii ships posts.</span>
+          ChatGPT writes text. <span className="grad-text">Mochii ships posts.</span>
         </h2>
         <div className="compare">
           <div className="row head">
             <div />
             <div>ChatGPT</div>
-            <div>🍡 PostChii</div>
+            <div>🍡 Mochii</div>
           </div>
           <div className="row">
             <div>Remembers your brand</div>
@@ -469,14 +469,14 @@ export default function Home() {
           <details>
             <summary>Do I need any design or marketing skills?</summary>
             <p>
-              No. You set your brand once — logo, name, tone — and PostChii handles design
+              No. You set your brand once — logo, name, tone — and Mochii handles design
               and copywriting on every post after that.
             </p>
           </details>
           <details>
             <summary>Where do the posts go?</summary>
             <p>
-              Preview lands in Telegram first. Approve it and PostChii publishes to your
+              Preview lands in Telegram first. Approve it and Mochii publishes to your
               connected accounts — Instagram, LinkedIn, Facebook — and pushes listings to
               portals like Bayut and Property Finder, or your own tools via the API.
             </p>
@@ -484,7 +484,7 @@ export default function Home() {
           <details>
             <summary>Can I promote a post as an ad?</summary>
             <p>
-              That's on the roadmap — reply "promote" with a budget and PostChii will boost
+              That's on the roadmap — reply "promote" with a budget and Mochii will boost
               the post for you. Early-access users get it first.
             </p>
           </details>

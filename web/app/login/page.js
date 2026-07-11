@@ -67,7 +67,7 @@ export default function LoginPage() {
     <div className="auth-wrap">
       <div className="card glow">
         <h1 style={{ fontSize: 28, textAlign: 'center' }}>
-          {mode === 'signin' ? 'Hey again 👋' : 'Join PostChii 🍡'}
+          {mode === 'signin' ? 'Hey again 👋' : 'Join Mochii 🍡'}
         </h1>
         <p className="muted" style={{ textAlign: 'center', fontSize: 15, marginBottom: 20 }}>
           {mode === 'signin' ? 'Sign in and start posting.' : 'Free account. Two minutes.'}

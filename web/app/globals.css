@@ -147,6 +147,15 @@ header.site .logo:hover .logo-word {
   transform: skewX(-4deg) scale(1.03);
 }
 
+.logo-word .tm {
+  font-style: normal;
+  font-size: 12px;
+  font-weight: 700;
+  vertical-align: 14px;
+  letter-spacing: 0;
+  margin-left: 1px;
+}
+
 @keyframes logo-sheen {
   0% {
     background-position: 0% 50%;
@@ -484,7 +493,7 @@ button:disabled {
   grid-template-columns: 1.08fr 0.92fr;
   gap: 64px;
   align-items: center;
-  padding: 72px 0 24px;
+  padding: 34px 0 24px;
   position: relative;
 }
 

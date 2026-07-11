@@ -9,7 +9,7 @@ process.on('unhandledRejection', (err) => {
 });
 
 // Startup diagnostics — makes deploy-time misconfiguration obvious in logs.
-console.log('PostChii server starting with:', {
+console.log('Mochii server starting with:', {
   botToken: Boolean(config.telegram.botToken),
   botMode: config.telegram.mode,
   openai: Boolean(config.openai.apiKey),
@@ -45,7 +45,7 @@ app.use('/storage', express.static(config.storage.root));
 
 app.get('/', (req, res) => {
   res.json({
-    service: 'PostChii API 🍡',
+    service: 'Mochii API 🍡',
     docs: 'This is the bot/API server — the web app lives elsewhere.',
     health: '/health',
   });

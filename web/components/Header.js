@@ -19,7 +19,9 @@ export default function Header() {
     <header className="site">
       <Link href="/" className="logo">
         <span className="logo-dango">🍡</span>
-        <span className="logo-word">POSTCHII</span>
+        <span className="logo-word">
+          MOCHII<i className="tm">™</i>
+        </span>
       </Link>
       <div className="nav-glass">
         <a href="/#how">How it works</a>
