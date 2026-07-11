@@ -521,6 +521,48 @@ button:disabled {
   animation: fade-up 0.5s 0.06s ease both;
 }
 
+/* flipping integration word in the headline */
+.flip-words {
+  position: relative;
+  display: inline-block;
+  vertical-align: bottom;
+  perspective: 700px;
+  max-width: 100%;
+}
+
+.fw-sizer {
+  visibility: hidden;
+  white-space: nowrap;
+}
+
+.fw {
+  position: absolute;
+  left: 0;
+  top: 0;
+  white-space: nowrap;
+  opacity: 0;
+  transform-origin: 50% 60%;
+  backface-visibility: hidden;
+  animation: word-flip 16.2s cubic-bezier(0.4, 0, 0.2, 1) infinite both;
+}
+
+@keyframes word-flip {
+  0% {
+    opacity: 0;
+    transform: rotateX(90deg);
+  }
+  2%,
+  9% {
+    opacity: 1;
+    transform: none;
+  }
+  11.5%,
+  100% {
+    opacity: 0;
+    transform: rotateX(-90deg);
+  }
+}
+
 .hero .sub {
   font-size: 18px;
   color: var(--muted);
@@ -4217,6 +4259,32 @@ ul.content-list img {
 
   footer.site {
     padding: 22px 16px;
+  }
+
+  /* early-access form: clean stacked layout instead of a broken pill */
+  .ea-form {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+    padding: 10px;
+    border-radius: 20px;
+  }
+
+  .ea-form input {
+    width: 100%;
+    min-width: 0;
+    padding: 12px 14px;
+    text-align: center;
+  }
+
+  .ea-form button {
+    width: 100%;
+    padding: 13px 0;
+  }
+
+  .ea-form .ea-err {
+    position: static;
+    margin-top: 2px;
   }
 }
 

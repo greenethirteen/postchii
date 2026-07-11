@@ -40,9 +40,29 @@ export default function Home() {
           <h1>
             Send a text.
             <br />
-            <span className="grad-text">Get a post.</span>
+            <span className="grad-text">Get a designed post.</span>
             <br />
-            Publish <span className="grad-text">everywhere</span>.
+            Publish{' '}
+            <span className="flip-words">
+              <span className="fw-sizer" aria-hidden="true">
+                Property Finder.
+              </span>
+              {[
+                'everywhere.',
+                'Instagram.',
+                'Facebook.',
+                'LinkedIn.',
+                'Bayut.',
+                'Property Finder.',
+                'dubizzle.',
+                'TikTok.',
+                'WhatsApp.',
+              ].map((w, i) => (
+                <span key={w} className="fw grad-text" style={{ animationDelay: `${i * 1.8}s` }}>
+                  {w}
+                </span>
+              ))}
+            </span>
           </h1>
           <p className="sub sub-caps">ALL IN TELEGRAM</p>
           <EarlyAccess />
@@ -279,6 +299,9 @@ export default function Home() {
               <span className="soon">🏠 Bayut</span>
               <span className="soon">🔑 Property Finder</span>
               <span className="soon">🏷️ dubizzle</span>
+              <span className="soon">🎵 TikTok</span>
+              <span className="soon">💬 WhatsApp</span>
+              <span className="soon">📍 Google Business</span>
             </div>
           </div>
           <div className="cell">
