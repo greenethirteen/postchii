@@ -4182,6 +4182,11 @@ ul.content-list img {
     gap: 32px;
   }
 
+  .hero h1 {
+    font-size: 48px;
+    line-height: 1.04;
+  }
+
   .stats {
     gap: 10px;
   }

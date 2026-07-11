@@ -40,29 +40,9 @@ export default function Home() {
           <h1>
             Send a text.
             <br />
-            <span className="grad-text">Get a designed post.</span>
+            <span className="grad-text">Get a post.</span>
             <br />
-            Publish{' '}
-            <span className="flip-words">
-              <span className="fw-sizer" aria-hidden="true">
-                Property Finder.
-              </span>
-              {[
-                'everywhere.',
-                'Instagram.',
-                'Facebook.',
-                'LinkedIn.',
-                'Bayut.',
-                'Property Finder.',
-                'dubizzle.',
-                'TikTok.',
-                'WhatsApp.',
-              ].map((w, i) => (
-                <span key={w} className="fw grad-text" style={{ animationDelay: `${i * 1.8}s` }}>
-                  {w}
-                </span>
-              ))}
-            </span>
+            Publish <span className="grad-text">everywhere</span>.
           </h1>
           <p className="sub sub-caps">ALL IN TELEGRAM</p>
           <EarlyAccess />
