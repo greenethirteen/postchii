@@ -825,8 +825,9 @@ button:disabled {
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.95);
-  font-size: 16px;
+  overflow: hidden;
+  background: #fff;
+  border: 2px solid rgba(255, 255, 255, 0.9);
 }
 
 .tg-head b {
@@ -3192,7 +3193,10 @@ button:disabled {
 }
 
 .steps.four .step h3 {
-  font-size: 16.5px;
+  font-size: 14.5px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
   margin-bottom: 4px;
 }
 
@@ -3509,23 +3513,59 @@ button:disabled {
   color: #0b8a61;
 }
 
-/* 04 — live everywhere */
+/* 04 — live everywhere: flip carousel */
 .sv-publish {
-  display: flex;
-  gap: 7px;
-  flex-wrap: wrap;
-  justify-content: center;
+  position: relative;
+  height: 38px;
+  perspective: 500px;
 }
 
 .sv-publish span {
-  padding: 7px 10px;
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border-radius: 999px;
-  font-size: 11.5px;
+  font-size: 12.5px;
   font-weight: 700;
   border: 1px solid rgba(18, 185, 129, 0.35);
   background: rgba(18, 185, 129, 0.07);
   color: #0b8a61;
   white-space: nowrap;
+  opacity: 0;
+  transform-origin: 50% 50%;
+  backface-visibility: hidden;
+  animation: pub-flip 8s cubic-bezier(0.4, 0, 0.2, 1) infinite both;
+}
+
+.sv-publish .f2 {
+  animation-delay: 2s;
+}
+
+.sv-publish .f3 {
+  animation-delay: 4s;
+}
+
+.sv-publish .f4 {
+  animation-delay: 6s;
+}
+
+@keyframes pub-flip {
+  0% {
+    opacity: 0;
+    transform: rotateX(90deg);
+  }
+  5%,
+  23% {
+    opacity: 1;
+    transform: none;
+  }
+  28%,
+  100% {
+    opacity: 0;
+    transform: rotateX(-90deg);
+  }
 }
 
 /* CTA band — ink */

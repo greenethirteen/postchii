@@ -33,7 +33,7 @@ const app = express();
 // The Next.js dev app on :3220 calls us directly from the browser.
 app.use((req, res, next) => {
   res.set('Access-Control-Allow-Origin', '*');
-  res.set('Access-Control-Allow-Headers', 'Content-Type');
+  res.set('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Admin-Password');
   res.set('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
   if (req.method === 'OPTIONS') return res.sendStatus(204);
   next();
@@ -133,6 +133,24 @@ app.post('/social/connect-link', async (req, res) => {
   } catch (err) {
     console.error('connect link failed:', err);
     res.status(500).json({ ok: false, error: 'could not create connect link' });
+  }
+});
+
+// Waitlist viewer for the secret admin page (shared-password gate).
+app.get('/admin/waitlist', async (req, res) => {
+  try {
+    const pass = req.get('x-admin-password') || req.query.password;
+    if (pass !== (process.env.ADMIN_PASSWORD || '1059')) {
+      return res.status(401).json({ ok: false, error: 'wrong password' });
+    }
+    if (!db.linking) return res.status(503).json({ ok: false, error: 'firestore not configured' });
+    const { getFirestore } = require('firebase-admin/firestore');
+    const snap = await getFirestore().collection('waitlist').orderBy('createdAt', 'desc').get();
+    const emails = snap.docs.map((d) => ({ email: d.data().email, createdAt: d.data().createdAt }));
+    res.json({ ok: true, count: emails.length, emails });
+  } catch (err) {
+    console.error('waitlist admin failed:', err);
+    res.status(500).json({ ok: false, error: 'failed to load waitlist' });
   }
 });
 

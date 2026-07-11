@@ -1,6 +1,25 @@
 import EarlyAccess from '@/components/EarlyAccess';
 import UseCases from '@/components/UseCases';
 
+// Telegram logo for the chat mock's avatar
+function TelegramMark() {
+  return (
+    <svg viewBox="0 0 240 240" aria-hidden="true" style={{ width: '100%', height: '100%' }}>
+      <defs>
+        <linearGradient id="tgAva" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#2AABEE" />
+          <stop offset="1" stopColor="#229ED9" />
+        </linearGradient>
+      </defs>
+      <circle cx="120" cy="120" r="120" fill="url(#tgAva)" />
+      <path
+        fill="#fff"
+        d="M44.7 118.8c48.1-21 80.2-34.8 96.3-41.5 45.8-19 55.4-22.4 61.6-22.5 1.4 0 4.4.3 6.4 1.9 1.6 1.3 2.1 3 2.3 4.3.2 1.2.5 4 .3 6.2-2.5 26.1-13.2 89.4-18.7 118.6-2.3 12.4-6.9 16.5-11.3 16.9-9.6.9-16.9-6.3-26.2-12.4-14.6-9.6-22.8-15.5-36.9-24.9-16.4-10.8-5.8-16.7 3.6-26.4 2.5-2.5 45-41.2 45.8-44.7.1-.4.2-2.1-.8-3-1-.9-2.4-.6-3.5-.3-1.5.3-25.2 16-71.1 47-6.7 4.6-12.8 6.9-18.3 6.8-6-.1-17.6-3.4-26.2-6.2-10.6-3.4-19-5.2-18.3-11 .4-3 4.5-6.1 12.3-9.3z"
+      />
+    </svg>
+  );
+}
+
 // Minimal house mark used as the demo brand's logo
 function HouseMark() {
   return (
@@ -32,7 +51,9 @@ export default function Home() {
         <div className="tg-wrap" aria-hidden="true">
         <div className="tg">
           <div className="tg-head">
-            <span className="tg-ava">🍡</span>
+            <span className="tg-ava">
+              <TelegramMark />
+            </span>
             <div>
               <b>Mochii</b>
               <i>bot · online</i>
@@ -220,10 +241,10 @@ export default function Home() {
             <h3>It publishes everywhere</h3>
             <p className="step-sub">Socials & portals, at once.</p>
             <div className="step-visual sv-publish">
-              <span>📸 Instagram ✓</span>
-              <span>📘 Facebook ✓</span>
-              <span>🏠 Bayut ✓</span>
-              <span>🔑 Property Finder ✓</span>
+              <span className="f1">📸 Instagram ✓</span>
+              <span className="f2">📘 Facebook ✓</span>
+              <span className="f3">🏠 Bayut ✓</span>
+              <span className="f4">🔑 Property Finder ✓</span>
             </div>
           </div>
         </div>
