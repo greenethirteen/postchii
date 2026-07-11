@@ -3,7 +3,14 @@ const OpenAI = require('openai');
 const config = require('../config');
 const { EXTRACTION_SYSTEM, UPDATE_SYSTEM } = require('./prompts');
 
-const client = new OpenAI({ apiKey: config.openai.apiKey });
+// Lazy so a missing key degrades to a per-request error instead of
+// crashing the whole server at boot.
+let client = null;
+function getClient() {
+  if (!config.openai.apiKey) throw new Error('OPENAI_API_KEY is not set');
+  if (!client) client = new OpenAI({ apiKey: config.openai.apiKey });
+  return client;
+}
 
 async function extract(rawText, imageDataUri) {
   const userContent = imageDataUri
@@ -13,7 +20,7 @@ async function extract(rawText, imageDataUri) {
       ]
     : rawText;
 
-  const response = await client.chat.completions.create({
+  const response = await getClient().chat.completions.create({
     model: config.openai.model,
     response_format: { type: 'json_object' },
     temperature: 0,
@@ -27,7 +34,7 @@ async function extract(rawText, imageDataUri) {
 
 // Merges a user's plain-language answer into previously extracted data.
 async function updateExtraction(extracted, userAnswer) {
-  const response = await client.chat.completions.create({
+  const response = await getClient().chat.completions.create({
     model: config.openai.model,
     response_format: { type: 'json_object' },
     temperature: 0,

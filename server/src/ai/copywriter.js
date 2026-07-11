@@ -3,7 +3,14 @@ const OpenAI = require('openai');
 const config = require('../config');
 const { COPY_SYSTEM, EDIT_SYSTEM } = require('./prompts');
 
-const client = new OpenAI({ apiKey: config.openai.apiKey });
+// Lazy so a missing key degrades to a per-request error instead of
+// crashing the whole server at boot.
+let client = null;
+function getClient() {
+  if (!config.openai.apiKey) throw new Error('OPENAI_API_KEY is not set');
+  if (!client) client = new OpenAI({ apiKey: config.openai.apiKey });
+  return client;
+}
 
 const INDUSTRY_LABELS = { recruitment: 'recruitment', real_estate: 'real estate' };
 
@@ -13,7 +20,7 @@ async function writeCopy(extractedData, company) {
     .replace('{{tone}}', company.brand_tone || 'professional')
     .replace('{{contentType}}', extractedData.type || 'business update');
 
-  const response = await client.chat.completions.create({
+  const response = await getClient().chat.completions.create({
     model: config.openai.model,
     response_format: { type: 'json_object' },
     temperature: 0.7,
@@ -28,7 +35,7 @@ async function writeCopy(extractedData, company) {
 // Applies a natural-language edit ("shorter headline", "remove salary")
 // to the post. Returns { extracted, copy }.
 async function editContent(extracted, copy, instruction) {
-  const response = await client.chat.completions.create({
+  const response = await getClient().chat.completions.create({
     model: config.openai.model,
     response_format: { type: 'json_object' },
     temperature: 0.3,
