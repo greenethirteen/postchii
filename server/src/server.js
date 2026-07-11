@@ -43,6 +43,14 @@ app.use(express.json());
 // Rendered posts + uploaded assets, loadable by the web dashboard.
 app.use('/storage', express.static(config.storage.root));
 
+app.get('/', (req, res) => {
+  res.json({
+    service: 'PostChii API 🍡',
+    docs: 'This is the bot/API server — the web app lives elsewhere.',
+    health: '/health',
+  });
+});
+
 app.get('/health', (req, res) => {
   res.json({ ok: true, backend: db.linking ? 'firestore' : 'sqlite', uptime: process.uptime() });
 });
