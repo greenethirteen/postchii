@@ -39,7 +39,7 @@ function registerHandlers(bot) {
       if (linked) {
         const company = await userService.getCompany(linked);
         await ctx.reply(
-          '🔗 Telegram connected to your PostPilot account!\n\n' +
+          '🔗 Telegram connected to your PostChii account!\n\n' +
             (company
               ? `Brand: ${company.brand_name || company.name}\n\nSend me a business update and I'll turn it into a branded post.`
               : 'Finish your brand setup on the web dashboard, then send me a business update here.')

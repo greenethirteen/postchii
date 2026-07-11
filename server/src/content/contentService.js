@@ -27,6 +27,22 @@ const FIELD_QUESTIONS = {
 // in-progress drafts (users just resend); finished posts are in the DB.
 const drafts = new Map();
 
+// Daily cost guard: every incoming message triggers OpenAI calls, so cap
+// interactions per user per day. In-memory is fine — worst case a restart
+// resets the meter.
+const usage = new Map(); // user.id -> { day, count }
+
+function overDailyLimit(userId) {
+  const day = new Date().toISOString().slice(0, 10);
+  const u = usage.get(userId);
+  if (!u || u.day !== day) {
+    usage.set(userId, { day, count: 1 });
+    return false;
+  }
+  u.count += 1;
+  return u.count > config.aiDailyLimit;
+}
+
 const reviewKeyboard = Markup.inlineKeyboard([
   Markup.button.callback('✅ Approve', 'post:approve'),
   Markup.button.callback('🗑 Discard', 'post:discard'),
@@ -38,6 +54,13 @@ function missingFields(extracted) {
 }
 
 async function handleIncoming(ctx, user, { text, photoFileId, documentFileId, mimeType }) {
+  if (overDailyLimit(user.id)) {
+    await ctx.reply(
+      "You've hit today's limit of posts — it resets at midnight UTC. See you tomorrow! 🍡"
+    );
+    return;
+  }
+
   const draft = drafts.get(user.id);
   const hasMedia = Boolean(photoFileId || documentFileId);
 

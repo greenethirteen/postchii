@@ -2702,6 +2702,35 @@ button:disabled {
   color: var(--ink);
 }
 
+.platforms span.soon {
+  opacity: 0.55;
+}
+
+.platforms span.soon::after {
+  content: 'soon';
+  font-size: 9.5px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--peach);
+}
+
+.soon-pill {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 8px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: rgba(255, 138, 92, 0.12);
+  border: 1px solid rgba(255, 138, 92, 0.35);
+  color: #d96a35;
+  font-style: normal;
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
 .code-snip {
   margin-top: 18px;
   border-radius: var(--r-md);
@@ -3377,6 +3406,13 @@ footer.site {
   text-align: center;
   font-size: 13px;
   color: var(--faint);
+}
+
+footer.site .credits {
+  display: block;
+  margin-top: 6px;
+  font-size: 11px;
+  opacity: 0.75;
 }
 
 /* ——— segmented ——— */

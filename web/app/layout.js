@@ -13,7 +13,13 @@ export default function RootLayout({ children }) {
       <body>
         <Header />
         <main>{children}</main>
-        <footer className="site">made with 🍡 by PostChii</footer>
+        <footer className="site">
+          made with 🍡 by PostChii
+          <span className="credits">
+            Photos: Norlando Pobre, Tuantranseo, Shixart1985, Gfilip, perzon seo — CC BY /
+            CC BY-SA via Wikimedia Commons
+          </span>
+        </footer>
       </body>
     </html>
   );

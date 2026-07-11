@@ -27,6 +27,9 @@ module.exports = {
     apiKey: process.env.UPLOAD_POST_API_KEY || null,
   },
 
+  // Max AI-consuming bot interactions per user per day (cost guard).
+  aiDailyLimit: parseInt(process.env.AI_DAILY_LIMIT || '25', 10),
+
   // When a service account is configured, Firestore + Cloud Storage back the
   // app. Without it we fall back to local SQLite so the bot still runs.
   firebase: {

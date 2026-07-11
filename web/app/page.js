@@ -299,14 +299,16 @@ export default function Home() {
               <span>📸 Instagram</span>
               <span>💼 LinkedIn</span>
               <span>📘 Facebook</span>
-              <span>🏠 Bayut</span>
-              <span>🔑 Property Finder</span>
-              <span>🏷️ dubizzle</span>
+              <span className="soon">🏠 Bayut</span>
+              <span className="soon">🔑 Property Finder</span>
+              <span className="soon">🏷️ dubizzle</span>
             </div>
           </div>
           <div className="cell">
             <span className="ico">🚀</span>
-            <h3>Promote winners</h3>
+            <h3>
+              Promote winners <em className="soon-pill">coming soon</em>
+            </h3>
             <p>Boost a post into an ad without leaving the chat. Set a budget, PostChii does the rest.</p>
             <div className="budget-row">
               🚀 Boost · £50
@@ -482,8 +484,8 @@ export default function Home() {
           <details>
             <summary>Can I promote a post as an ad?</summary>
             <p>
-              Yes — reply "promote" with a budget and duration, and PostChii boosts the post
-              for you. Performance comes back in chat.
+              That's on the roadmap — reply "promote" with a budget and PostChii will boost
+              the post for you. Early-access users get it first.
             </p>
           </details>
           <details>
