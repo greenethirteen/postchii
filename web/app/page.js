@@ -185,50 +185,41 @@ export default function Home() {
       <section className="section" id="how">
         <p className="kicker">How it works</p>
         <h2 className="section-title">
-          Three steps. <span className="grad-text">That's it.</span>
+          One chat. Every channel. <span className="grad-text">Zero effort.</span>
         </h2>
-        <div className="steps">
+        <div className="steps four">
           <div className="step">
             <span className="num">01</span>
-            <h3>Brand with your logo</h3>
-            <p>Set your logo, name and tone once. Every post inherits it automatically.</p>
-            <div className="step-visual sv-brand">
-              <span className="svb-logo">
-                <HouseMark />
-              </span>
-              <div className="svb-info">
-                <b>Betterhomes Dubai</b>
-                <div className="svb-chips">
-                  <span>💼 Professional</span>
-                  <span className="on">✨ Luxury</span>
-                </div>
-              </div>
+            <h3>Tell AI what you need</h3>
+            <div className="step-visual sv-text">
+              <span className="svt-out">New listing! 3BR in DAMAC Hills, AED 2.1M 🏡</span>
             </div>
           </div>
           <div className="step">
             <span className="num">02</span>
-            <h3>Link with Telegram</h3>
-            <p>One tap connects your Telegram to your brand. No new app to learn.</p>
-            <div className="step-visual sv-link">
-              <div className="svl-row">
-                <span className="svl-node brand">
-                  <HouseMark />
-                </span>
-                <span className="svl-line" />
-                <span className="svl-node tg">✈️</span>
-              </div>
-              <span className="svl-badge">✓ Connected</span>
+            <h3>It creates the post</h3>
+            <div className="step-visual sv-text">
+              <span className="svt-in">
+                <i className="svt-img" /> Post ready ✓
+              </span>
             </div>
           </div>
           <div className="step">
             <span className="num">03</span>
-            <h3>Text to post</h3>
-            <p>Message a plain business update. A finished, branded post comes back.</p>
-            <div className="step-visual sv-text">
-              <span className="svt-out">New listing! 3BR in DAMAC Hills 🏡</span>
-              <span className="svt-in">
-                <i className="svt-img" /> Post ready ✓
-              </span>
+            <h3>You approve it</h3>
+            <div className="step-visual sv-approve">
+              <span className="ok">✓ Approve</span>
+              <span>✎ Tweak</span>
+            </div>
+          </div>
+          <div className="step">
+            <span className="num">04</span>
+            <h3>It publishes everywhere</h3>
+            <div className="step-visual sv-publish">
+              <span>📸 ✓</span>
+              <span>📘 ✓</span>
+              <span>🏠 ✓</span>
+              <span>🔑 ✓</span>
             </div>
           </div>
         </div>
