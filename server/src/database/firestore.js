@@ -124,6 +124,8 @@ const content = {
       user_id: d.userId,
       raw_input: d.rawInput,
       status: d.status,
+      image_path: d.imagePath || null,
+      generated_copy: d.generatedCopy || null,
       channels: d.channels || {},
     };
   },

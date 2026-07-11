@@ -69,8 +69,44 @@ app.post('/publish', async (req, res) => {
     const info = await publishTo(contentId, channel);
     res.json({ ok: true, channel, ...info });
   } catch (err) {
+    if (err.code === 'NOT_CONNECTED') {
+      return res.status(409).json({ ok: false, error: 'not_connected', channel: err.channel });
+    }
     console.error('publish failed:', err);
     res.status(500).json({ ok: false, error: 'publish failed' });
+  }
+});
+
+// ——— Social account connection (Upload-Post) ———
+const uploadPost = require('./publish/uploadPost');
+
+// Which platforms the signed-in user has connected.
+app.get('/social/status', async (req, res) => {
+  try {
+    const uid = await callerUid(req).catch(() => null);
+    if (!uid) return res.status(401).json({ ok: false, error: 'sign in required' });
+    if (!uploadPost.enabled()) return res.json({ ok: true, enabled: false, connected: {} });
+    const connected = await uploadPost.connectedAccounts(uid);
+    res.json({ ok: true, enabled: true, connected });
+  } catch (err) {
+    console.error('social status failed:', err);
+    res.status(500).json({ ok: false, error: 'status failed' });
+  }
+});
+
+// Hosted link where the user connects Instagram/Facebook/LinkedIn.
+app.post('/social/connect-link', async (req, res) => {
+  try {
+    const uid = await callerUid(req).catch(() => null);
+    if (!uid) return res.status(401).json({ ok: false, error: 'sign in required' });
+    if (!uploadPost.enabled()) {
+      return res.status(503).json({ ok: false, error: 'publishing is not configured yet' });
+    }
+    const url = await uploadPost.connectLink(uid, req.body?.redirectUrl);
+    res.json({ ok: true, url });
+  } catch (err) {
+    console.error('connect link failed:', err);
+    res.status(500).json({ ok: false, error: 'could not create connect link' });
   }
 });
 

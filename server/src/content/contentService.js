@@ -7,6 +7,7 @@ const { extract, updateExtraction } = require('../ai/extractor');
 const { writeCopy, editContent } = require('../ai/copywriter');
 const renderer = require('../renderer/renderer');
 const { CHANNELS, publishTo } = require('../publish/channels');
+const uploadPost = require('../publish/uploadPost');
 const { uploadPublic } = require('../storage/upload');
 
 // Required fields before we generate; everything else is optional.
@@ -233,15 +234,36 @@ async function publishSelected(ctx, user) {
   await ctx.reply(`🚀 Publishing to ${keys.length} channel${keys.length > 1 ? 's' : ''}…`);
 
   const lines = [];
+  let needsConnect = false;
   for (const key of keys) {
     const ch = CHANNELS[key];
     try {
       const info = await publishTo(draft.recordId, key);
-      lines.push(`${ch.icon} ${ch.label} ✓\n${info.url}`);
+      lines.push(`${ch.icon} ${ch.label} ✓${info.url ? `\n${info.url}` : ''}`);
+      draft.channels.delete(key);
     } catch (err) {
-      console.error(`Publish to ${key} failed for record`, draft.recordId, err);
-      lines.push(`${ch.icon} ${ch.label} ✗ — failed, try again from the dashboard`);
+      if (err.code === 'NOT_CONNECTED') {
+        needsConnect = true;
+        lines.push(`${ch.icon} ${ch.label} — account not connected yet`);
+      } else {
+        console.error(`Publish to ${key} failed for record`, draft.recordId, err);
+        lines.push(`${ch.icon} ${ch.label} ✗ — failed, try again from the dashboard`);
+        draft.channels.delete(key);
+      }
     }
+  }
+
+  if (needsConnect) {
+    // Keep the draft alive so the user can connect and hit Publish again.
+    let connectMsg = 'Connect your accounts from the web dashboard, then tap Publish again.';
+    try {
+      const url = await uploadPost.connectLink(user.id);
+      connectMsg = `Connect your accounts here (takes a minute):\n${url}\n\nThen tap 🚀 Publish again.`;
+    } catch (err) {
+      console.error('connect link failed', err);
+    }
+    await ctx.reply(`${lines.join('\n\n')}\n\n🔗 ${connectMsg}`, pickerKeyboard(draft));
+    return;
   }
 
   await content.update(draft.recordId, { status: 'published' });

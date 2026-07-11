@@ -21,6 +21,12 @@ module.exports = {
     model: process.env.OPENAI_MODEL || 'gpt-4o-mini',
   },
 
+  // Upload-Post (upload-post.com) — real Instagram/Facebook/LinkedIn publishing.
+  // Without a key, social channels fall back to simulated publishing.
+  uploadPost: {
+    apiKey: process.env.UPLOAD_POST_API_KEY || null,
+  },
+
   // When a service account is configured, Firestore + Cloud Storage back the
   // app. Without it we fall back to local SQLite so the bot still runs.
   firebase: {

@@ -38,6 +38,7 @@ export default function DashboardPage() {
   const [linkCode, setLinkCode] = useState(null);
   const [loading, setLoading] = useState(true);
   const [pub, setPub] = useState({}); // `${itemId}:${channel}` -> 'busy' | 'error'
+  const [social, setSocial] = useState(null); // { enabled, connected } | null
 
   useEffect(() => {
     if (!user) return;
@@ -85,6 +86,29 @@ export default function DashboardPage() {
       createdAt: new Date().toISOString(),
     });
     setLinkCode(code);
+  }
+
+  useEffect(() => {
+    if (!user) return;
+    user
+      .getIdToken()
+      .then((token) =>
+        fetch(`${API}/social/status`, { headers: { Authorization: `Bearer ${token}` } })
+      )
+      .then((r) => r.json())
+      .then((d) => d.ok && setSocial(d))
+      .catch(() => {});
+  }, [user]);
+
+  async function connectSocials() {
+    const token = await user.getIdToken();
+    const r = await fetch(`${API}/social/connect-link`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+      body: JSON.stringify({ redirectUrl: window.location.href }),
+    });
+    const d = await r.json();
+    if (d.ok) window.open(d.url, '_blank');
   }
 
   async function publish(itemId, channel) {
@@ -177,6 +201,32 @@ export default function DashboardPage() {
             </>
           )}
         </div>
+      </div>
+
+      <div className="card">
+        <h2>
+          Publishing accounts{' '}
+          {social?.enabled === false && <span className="badge">not configured</span>}
+        </h2>
+        <p className="muted" style={{ fontSize: 14.5 }}>
+          Connect your socials once — then publish from chat or here.
+        </p>
+        <div className="badge-row" style={{ marginTop: 10 }}>
+          {['instagram', 'facebook', 'linkedin'].map((k) => {
+            const on = Boolean(social?.connected?.[k]);
+            const labels = { instagram: '📸 Instagram', facebook: '📘 Facebook', linkedin: '💼 LinkedIn' };
+            return (
+              <span key={k} className={`badge ${on ? 'ok' : ''}`}>
+                {labels[k]} {on ? 'connected' : 'not connected'}
+              </span>
+            );
+          })}
+        </div>
+        <button onClick={connectSocials} disabled={!social?.enabled}>
+          {social?.connected && Object.keys(social.connected).length > 0
+            ? 'Manage accounts'
+            : 'Connect accounts'}
+        </button>
       </div>
 
       <div className="card">
