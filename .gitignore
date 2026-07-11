@@ -1,5 +1,6 @@
 node_modules/
-storage/
+# Runtime data (rendered posts, uploads, sqlite db) — not src/storage/ code
+server/storage/
 .env
 .env.local
 .next/
