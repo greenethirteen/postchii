@@ -62,7 +62,7 @@ a {
 
 /* ——— header ——— */
 
-/* floating capsule header */
+/* floating capsule header — white, lifted on a brand-colored glow */
 header.site {
   position: sticky;
   top: 12px;
@@ -75,12 +75,13 @@ header.site {
   padding: 0 12px 0 24px;
   height: 62px;
   border-radius: 999px;
-  background: rgba(13, 13, 17, 0.82);
-  backdrop-filter: blur(18px) saturate(1.5);
-  -webkit-backdrop-filter: blur(18px) saturate(1.5);
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(14px) saturate(1.4);
+  -webkit-backdrop-filter: blur(14px) saturate(1.4);
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.08),
-    0 12px 40px -12px rgba(17, 17, 19, 0.5);
+    0 1px 2px rgba(17, 17, 19, 0.05),
+    0 14px 38px -14px rgba(255, 61, 119, 0.28),
+    0 22px 60px -20px rgba(124, 92, 255, 0.25);
 }
 
 /* gradient edge around the capsule */
@@ -89,12 +90,12 @@ header.site::before {
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  padding: 1px;
+  padding: 1.5px;
   background: linear-gradient(
     100deg,
     rgba(255, 61, 119, 0.55),
-    rgba(255, 255, 255, 0.1) 28%,
-    rgba(255, 255, 255, 0.1) 72%,
+    rgba(17, 17, 19, 0.08) 30%,
+    rgba(17, 17, 19, 0.08) 70%,
     rgba(124, 92, 255, 0.55)
   );
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
@@ -164,7 +165,7 @@ header.site nav {
 }
 
 header.site nav a {
-  color: rgba(255, 255, 255, 0.65);
+  color: var(--muted);
   cursor: pointer;
   transition: color 0.15s ease;
 }
@@ -188,13 +189,13 @@ header.site nav a {
   border-radius: 999px;
   font-size: 13.5px;
   font-weight: 550;
-  color: rgba(255, 255, 255, 0.68);
+  color: var(--muted);
   transition: background 0.15s ease, color 0.15s ease;
 }
 
 .nav-glass a:hover {
-  background: rgba(255, 255, 255, 0.12);
-  color: #fff;
+  background: linear-gradient(100deg, rgba(255, 61, 119, 0.09), rgba(124, 92, 255, 0.09));
+  color: var(--ink);
 }
 
 @media (max-width: 900px) {
@@ -204,7 +205,7 @@ header.site nav a {
 }
 
 header.site nav a:hover {
-  color: #fff;
+  color: var(--ink);
 }
 
 .nav-cta {
