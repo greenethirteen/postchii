@@ -191,6 +191,7 @@ export default function Home() {
           <div className="step">
             <span className="num">01</span>
             <h3>Tell AI what you need</h3>
+            <p className="step-sub">One text. No forms, no fields.</p>
             <div className="step-visual sv-text">
               <span className="svt-out">New listing! 3BR in DAMAC Hills, AED 2.1M 🏡</span>
             </div>
@@ -198,6 +199,7 @@ export default function Home() {
           <div className="step">
             <span className="num">02</span>
             <h3>It creates the post</h3>
+            <p className="step-sub">Design + caption, in your brand.</p>
             <div className="step-visual sv-text">
               <span className="svt-in">
                 <i className="svt-img" /> Post ready ✓
@@ -207,6 +209,7 @@ export default function Home() {
           <div className="step">
             <span className="num">03</span>
             <h3>You approve it</h3>
+            <p className="step-sub">One tap, right in Telegram.</p>
             <div className="step-visual sv-approve">
               <span className="ok">✓ Approve</span>
               <span>✎ Tweak</span>
@@ -215,11 +218,12 @@ export default function Home() {
           <div className="step">
             <span className="num">04</span>
             <h3>It publishes everywhere</h3>
+            <p className="step-sub">Socials & portals, at once.</p>
             <div className="step-visual sv-publish">
-              <span>📸 ✓</span>
-              <span>📘 ✓</span>
-              <span>🏠 ✓</span>
-              <span>🔑 ✓</span>
+              <span>📸 Instagram ✓</span>
+              <span>📘 Facebook ✓</span>
+              <span>🏠 Bayut ✓</span>
+              <span>🔑 Property Finder ✓</span>
             </div>
           </div>
         </div>
