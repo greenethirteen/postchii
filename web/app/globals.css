@@ -1983,7 +1983,8 @@ button:disabled {
 }
 
 .node .tag {
-  display: inline-flex;
+  display: flex;
+  width: fit-content;
   align-items: center;
   gap: 6px;
   font-size: 11px;
@@ -3868,6 +3869,148 @@ ul.content-list img {
   code.linkcode {
     font-size: 24px;
     letter-spacing: 6px;
+  }
+}
+
+/* ——— mobile polish ——— */
+@media (max-width: 700px) {
+  /* compact floating header */
+  header.site {
+    top: 8px;
+    height: 52px;
+    width: calc(100% - 20px);
+    margin-top: 10px;
+    padding: 0 8px 0 16px;
+    box-shadow:
+      0 1px 2px rgba(17, 17, 19, 0.05),
+      0 10px 26px -12px rgba(255, 61, 119, 0.25),
+      0 14px 40px -16px rgba(124, 92, 255, 0.22);
+  }
+
+  .logo-word {
+    font-size: 20px;
+  }
+
+  .logo-word .tm {
+    font-size: 9px;
+    vertical-align: 10px;
+  }
+
+  .logo-dango {
+    font-size: 17px;
+  }
+
+  .nav-cta {
+    padding: 7px 14px;
+    font-size: 13px;
+  }
+
+  main {
+    padding: 0 16px 56px;
+  }
+
+  /* kill the canyon gaps between sections */
+  .section {
+    padding: 44px 0 0;
+    scroll-margin-top: 70px;
+  }
+
+  .section-title {
+    margin-bottom: 22px;
+  }
+
+  .pain-band {
+    margin-top: 40px;
+    padding: 32px 20px 26px;
+  }
+
+  .cta-band {
+    margin-top: 44px;
+    padding: 44px 20px;
+  }
+
+  .hero {
+    padding-top: 24px;
+    gap: 32px;
+  }
+
+  .stats {
+    gap: 10px;
+  }
+
+  .stat {
+    padding: 16px 8px 14px;
+  }
+
+  .stat .l {
+    font-size: 11.5px;
+  }
+
+  /* comparison table: label on top, two value cells below */
+  .compare .row {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .compare .row > div {
+    padding: 10px 14px;
+    font-size: 12.5px;
+    display: block;
+  }
+
+  .compare .row > div:first-child {
+    grid-column: 1 / -1;
+    padding-bottom: 2px;
+    font-weight: 700;
+  }
+
+  .compare .row.head > div:first-child {
+    display: none;
+  }
+
+  .compare .row > div:nth-child(2) {
+    border-left: none;
+  }
+
+  /* use-case stage: tighter vertical rhythm */
+  .uc-stage {
+    gap: 14px;
+    padding: 20px 16px;
+  }
+
+  .uc-arrow {
+    width: 32px;
+    height: 32px;
+    font-size: 14px;
+  }
+
+  .uc-bubble {
+    font-size: 14px;
+  }
+
+  .uc-band {
+    padding: 28px 18px 24px;
+  }
+
+  /* pipeline nodes breathe less */
+  .node {
+    padding: 22px 18px 20px;
+  }
+
+  .vs {
+    padding: 20px 18px;
+  }
+
+  .vs-time {
+    font-size: 19px;
+  }
+
+  .chain span {
+    padding: 7px 11px;
+    font-size: 12px;
+  }
+
+  footer.site {
+    padding: 22px 16px;
   }
 }
 
