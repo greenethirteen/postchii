@@ -96,6 +96,11 @@ export default function Home() {
             <div className="tg-msg in m4">All live 🎉 Links are in your dashboard.</div>
             </div>
           </div>
+          <div className="tg-foot">
+            <span className="tg-clip">📎</span>
+            <span className="tg-field">Message</span>
+            <span className="tg-mic">🎤</span>
+          </div>
         </div>
 
         <div className="pop pop-ig">
@@ -120,8 +125,10 @@ export default function Home() {
 
       <div className="pain-band">
         <p className="pain-kicker">Why Mochii</p>
-        <h2>
-          Post in <span className="grad-text">30 seconds</span>, not 2 hours.
+        <h2 className="pain-title">
+          Post in <span className="grad-text">30 seconds</span>.
+          <br />
+          Not 2 hours.
         </h2>
         <p className="pain-sub">No design tools. No copy-paste. No missed posts.</p>
         <div className="vs-grid">
@@ -237,53 +244,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section">
-        <p className="kicker">Under the hood</p>
-        <h2 className="section-title">
-          One message in. <span className="grad-text">Four systems at work.</span>
-        </h2>
-        <div className="pipeline">
-          <div className="node">
-            <span className="tag">Extract</span>
-            <span className="nico">🔍</span>
-            <h3>Understanding</h3>
-            <p>
-              AI parses your message — role, salary, address, price, date — into structured
-              facts. No forms, no fields.
-            </p>
-            <span className="arrow">→</span>
-          </div>
-          <div className="node">
-            <span className="tag">Write</span>
-            <span className="nico">✍️</span>
-            <h3>Copy engine</h3>
-            <p>
-              GPT-class models draft the caption, LinkedIn post and CTA — tuned to your
-              brand tone.
-            </p>
-            <span className="arrow">→</span>
-          </div>
-          <div className="node">
-            <span className="tag">Render</span>
-            <span className="nico">🎨</span>
-            <h3>Design engine</h3>
-            <p>
-              A pixel renderer composes your image — logo, colors, headline — at
-              publish-ready resolution.
-            </p>
-            <span className="arrow">→</span>
-          </div>
-          <div className="node">
-            <span className="tag">Publish</span>
-            <span className="nico">🚀</span>
-            <h3>Everywhere at once</h3>
-            <p>
-              Approve in Telegram and Mochii posts it — Instagram, LinkedIn, Facebook, or
-              straight through your integrations.
-            </p>
-          </div>
-        </div>
-      </section>
+      
 
       <section className="section">
         <p className="kicker">Distribution</p>
@@ -376,134 +337,9 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section">
-        <p className="kicker">Why not just ChatGPT?</p>
-        <h2 className="section-title">
-          ChatGPT writes text. <span className="grad-text">Mochii ships posts.</span>
-        </h2>
-        <div className="compare">
-          <div className="row head">
-            <div />
-            <div>ChatGPT</div>
-            <div>🍡 Mochii</div>
-          </div>
-          <div className="row">
-            <div>Remembers your brand</div>
-            <div>
-              <span className="no">✗</span> re-explain every time
-            </div>
-            <div>
-              <span className="yes">✓</span> set once, applied always
-            </div>
-          </div>
-          <div className="row">
-            <div>Designed post image</div>
-            <div>
-              <span className="no">✗</span> generic AI art
-            </div>
-            <div>
-              <span className="yes">✓</span> your logo, your template
-            </div>
-          </div>
-          <div className="row">
-            <div>Effort per post</div>
-            <div>
-              <span className="no">✗</span> craft a prompt
-            </div>
-            <div>
-              <span className="yes">✓</span> one plain text
-            </div>
-          </div>
-          <div className="row">
-            <div>Consistent across posts</div>
-            <div>
-              <span className="no">✗</span> different every session
-            </div>
-            <div>
-              <span className="yes">✓</span> same brand, every render
-            </div>
-          </div>
-          <div className="row">
-            <div>Post history & approval</div>
-            <div>
-              <span className="no">✗</span>
-            </div>
-            <div>
-              <span className="yes">✓</span> approve or redo in chat
-            </div>
-          </div>
-          <div className="row">
-            <div>Publishes to socials & property portals</div>
-            <div>
-              <span className="no">✗</span> copy-paste yourself
-            </div>
-            <div>
-              <span className="yes">✓</span> one tap from chat
-            </div>
-          </div>
-          <div className="row">
-            <div>Promote a post as an ad</div>
-            <div>
-              <span className="no">✗</span>
-            </div>
-            <div>
-              <span className="yes">✓</span> set a budget in chat
-            </div>
-          </div>
-          <div className="row">
-            <div>API & integrations</div>
-            <div>
-              <span className="no">✗</span>
-            </div>
-            <div>
-              <span className="yes">✓</span> REST, n8n, Make
-            </div>
-          </div>
-        </div>
-      </section>
+      
 
-      <section className="section" id="faq">
-        <p className="kicker">FAQ</p>
-        <h2 className="section-title">Quick answers.</h2>
-        <div className="faq">
-          <details>
-            <summary>Do I need any design or marketing skills?</summary>
-            <p>
-              No. You set your brand once — logo, name, tone — and Mochii handles design
-              and copywriting on every post after that.
-            </p>
-          </details>
-          <details>
-            <summary>Where do the posts go?</summary>
-            <p>
-              Preview lands in Telegram first. Approve it and Mochii publishes to your
-              connected accounts — Instagram, LinkedIn, Facebook — and pushes listings to
-              portals like Bayut and Property Finder, or your own tools via the API.
-            </p>
-          </details>
-          <details>
-            <summary>Can I promote a post as an ad?</summary>
-            <p>
-              That's on the roadmap — reply "promote" with a budget and Mochii will boost
-              the post for you. Early-access users get it first.
-            </p>
-          </details>
-          <details>
-            <summary>What if I don't like the result?</summary>
-            <p>
-              Reply "redo" or describe the change in plain words — "make it punchier",
-              "mention the garden" — and a new version comes back in seconds.
-            </p>
-          </details>
-          <details>
-            <summary>How much does it cost?</summary>
-            <p>
-              Early access is free. Paid plans arrive at launch — early users get the best
-              deal. 🍡
-            </p>
-          </details>
-        </div>
-      </section>
+      
 
       <section className="section">
         <div className="cta-band">

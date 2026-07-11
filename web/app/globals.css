@@ -795,7 +795,7 @@ button:disabled {
   overflow: hidden;
   border: 1px solid var(--border);
   box-shadow: var(--shadow-lg);
-  background: #e7ebf0;
+  background: #d9e7f0;
   animation: fade-up 0.6s 0.24s ease both;
 }
 
@@ -810,13 +810,13 @@ button:disabled {
   filter: blur(6px);
 }
 
+/* telegram-blue app bar */
 .tg-head {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 12px 16px;
-  background: #fff;
-  border-bottom: 1px solid var(--border);
+  gap: 11px;
+  padding: 11px 16px;
+  background: linear-gradient(180deg, #2aabee, #229ed9);
 }
 
 .tg-ava {
@@ -825,14 +825,15 @@ button:disabled {
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  background: var(--grad);
+  background: rgba(255, 255, 255, 0.95);
   font-size: 16px;
 }
 
 .tg-head b {
   display: block;
-  font-size: 14.5px;
-  color: var(--ink);
+  font-size: 15px;
+  font-weight: 600;
+  color: #fff;
   line-height: 1.2;
 }
 
@@ -840,7 +841,32 @@ button:disabled {
   display: block;
   font-style: normal;
   font-size: 12px;
-  color: #3ca5e0;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+/* message input bar */
+.tg-foot {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 14px;
+  background: #fff;
+  border-top: 1px solid #e3e9ef;
+}
+
+.tg-clip,
+.tg-mic {
+  font-size: 17px;
+  opacity: 0.55;
+}
+
+.tg-field {
+  flex: 1;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: #f0f3f6;
+  color: #9aa7b4;
+  font-size: 13.5px;
 }
 
 .tg-body {
@@ -884,7 +910,7 @@ button:disabled {
   justify-self: center;
   padding: 4px 13px;
   border-radius: 999px;
-  background: rgba(84, 96, 110, 0.35);
+  background: rgba(80, 108, 138, 0.5);
   color: #fff;
   font-size: 11.5px;
   font-weight: 700;
@@ -904,7 +930,7 @@ button:disabled {
 
 .tg-msg.out {
   justify-self: end;
-  background: #e3fee0;
+  background: #effdde;
   border-bottom-right-radius: 4px;
 }
 
@@ -1761,10 +1787,11 @@ button:disabled {
 }
 
 .pain-band h2 {
-  font-size: clamp(26px, 3.6vw, 40px);
-  letter-spacing: -0.03em;
+  font-size: clamp(36px, 5.4vw, 60px);
+  letter-spacing: -0.035em;
+  line-height: 1.06;
   color: #fff;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 
 .pain-sub {
@@ -3377,7 +3404,7 @@ button:disabled {
 
 /* CTA band — ink */
 .cta-band {
-  margin-top: 72px;
+  margin-top: 0;
   text-align: center;
   border-radius: var(--r-xl);
   padding: 72px 30px;
@@ -3925,7 +3952,6 @@ ul.content-list img {
   }
 
   .cta-band {
-    margin-top: 44px;
     padding: 44px 20px;
   }
 

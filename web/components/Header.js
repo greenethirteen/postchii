@@ -27,7 +27,6 @@ export default function Header() {
         <a href="/#how">How it works</a>
         <a href="/#usecases">Use cases</a>
         <a href="/#features">Features</a>
-        <a href="/#faq">FAQ</a>
       </div>
       <nav>
         {user ? (
