@@ -6,9 +6,25 @@ const { initializeApp, cert } = require('firebase-admin/app');
 const { getFirestore } = require('firebase-admin/firestore');
 const config = require('../config');
 
-const serviceAccount = config.firebase.serviceAccountJson
-  ? JSON.parse(config.firebase.serviceAccountJson)
-  : require(path.resolve(config.firebase.serviceAccountPath));
+let serviceAccount;
+if (config.firebase.serviceAccountJson) {
+  try {
+    serviceAccount = JSON.parse(config.firebase.serviceAccountJson);
+  } catch (err) {
+    throw new Error(
+      'FIREBASE_SERVICE_ACCOUNT_JSON is set but is not valid JSON — paste the exact contents of serviceAccount.json.'
+    );
+  }
+} else {
+  const resolved = path.resolve(config.firebase.serviceAccountPath);
+  if (!require('fs').existsSync(resolved)) {
+    throw new Error(
+      `FIREBASE_SERVICE_ACCOUNT points to "${resolved}" but no such file exists. ` +
+        'In deployed environments use FIREBASE_SERVICE_ACCOUNT_JSON (the JSON contents) instead.'
+    );
+  }
+  serviceAccount = require(resolved);
+}
 
 const app = initializeApp({
   credential: cert(serviceAccount),

@@ -14,6 +14,10 @@ module.exports = {
 
   telegram: {
     botToken: process.env.TELEGRAM_BOT_TOKEN,
+    // 'polling' (default) runs the bot; 'off' runs HTTP-only. Only ONE
+    // process may poll a bot token at a time — set BOT_MODE=off locally
+    // once the deployed server owns the bot.
+    mode: process.env.BOT_MODE || 'polling',
   },
 
   openai: {

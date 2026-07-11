@@ -2,6 +2,24 @@ const fs = require('fs');
 const express = require('express');
 const config = require('./config');
 
+// Never let a background failure (e.g. Telegram polling conflict) kill the
+// HTTP server. Log loudly instead.
+process.on('unhandledRejection', (err) => {
+  console.error('Unhandled rejection:', err?.message || err);
+});
+
+// Startup diagnostics — makes deploy-time misconfiguration obvious in logs.
+console.log('PostChii server starting with:', {
+  botToken: Boolean(config.telegram.botToken),
+  botMode: config.telegram.mode,
+  openai: Boolean(config.openai.apiKey),
+  firebase: config.firebase.enabled ? (config.firebase.serviceAccountJson ? 'env-json' : 'file') : 'off (sqlite)',
+  storageBucket: config.firebase.storageBucket || null,
+  uploadPost: Boolean(config.uploadPost.apiKey),
+  publicUrl: config.publicUrl,
+  port: config.port,
+});
+
 // Ensure local storage dirs exist regardless of database backend.
 for (const dir of [config.storage.root, config.storage.logosDir, config.storage.postsDir]) {
   fs.mkdirSync(dir, { recursive: true });
@@ -114,8 +132,30 @@ app.listen(config.port, () => {
   console.log(`HTTP server listening on :${config.port}`);
 });
 
-const bot = createBot();
-bot.launch(() => console.log(`Telegram bot started (long polling, ${db.linking ? 'firestore' : 'sqlite'} backend)`));
+// The bot is optional per-process: HTTP keeps serving even if polling can't
+// start (missing token, or another process already owns the token → 409).
+if (config.telegram.botToken && config.telegram.mode !== 'off') {
+  const bot = createBot();
+  const launch = (attempt = 1) =>
+    bot
+      .launch(() =>
+        console.log(`Telegram bot started (long polling, ${db.linking ? 'firestore' : 'sqlite'} backend)`)
+      )
+      .catch((err) => {
+        console.error(`Bot launch failed (attempt ${attempt}):`, err?.message || err);
+        if (/409/.test(String(err?.message))) {
+          console.error(
+            'Another process is polling this bot token. Stop the other instance ' +
+              '(or set BOT_MODE=off on it), then this one will connect on retry.'
+          );
+        }
+        const delay = Math.min(60_000, 5_000 * attempt);
+        setTimeout(() => launch(attempt + 1), delay);
+      });
+  launch();
 
-process.once('SIGINT', () => bot.stop('SIGINT'));
-process.once('SIGTERM', () => bot.stop('SIGTERM'));
+  process.once('SIGINT', () => bot.stop('SIGINT'));
+  process.once('SIGTERM', () => bot.stop('SIGTERM'));
+} else {
+  console.log(`Telegram bot disabled (${config.telegram.botToken ? 'BOT_MODE=off' : 'no token set'}).`);
+}
