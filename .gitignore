@@ -6,3 +6,4 @@ server/storage/
 .next/
 *.log
 serviceAccount*.json
+.DS_Store

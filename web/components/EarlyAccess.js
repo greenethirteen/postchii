@@ -4,6 +4,21 @@ import { useState } from 'react';
 import { addDoc, collection } from 'firebase/firestore';
 import { db, firebaseReady } from '@/lib/firebase';
 
+const GADS_ID = 'AW-18339496959';
+const GADS_LABEL = process.env.NEXT_PUBLIC_GADS_EARLY_ACCESS_LABEL || '';
+
+// Google Ads conversion for an early-access signup. Needs the conversion label
+// from the Ads UI (Goals → Conversions → the action → tag setup) in
+// NEXT_PUBLIC_GADS_EARLY_ACCESS_LABEL; without it we still push a plain event
+// so the signup shows up in the tag's event stream.
+function trackSignup(email) {
+  if (typeof window === 'undefined' || typeof window.gtag !== 'function') return;
+  window.gtag('set', 'user_data', { email });
+  window.gtag('event', 'conversion', {
+    send_to: GADS_LABEL ? `${GADS_ID}/${GADS_LABEL}` : GADS_ID,
+  });
+}
+
 export default function EarlyAccess({ dark = false }) {
   const [email, setEmail] = useState('');
   const [state, setState] = useState('idle'); // idle | busy | done | error
@@ -15,11 +30,13 @@ export default function EarlyAccess({ dark = false }) {
       return;
     }
     setState('busy');
+    const clean = email.trim().toLowerCase();
     try {
       await addDoc(collection(db(), 'waitlist'), {
-        email: email.trim().toLowerCase(),
+        email: clean,
         createdAt: new Date().toISOString(),
       });
+      trackSignup(clean);
       setState('done');
     } catch {
       setState('error');
