@@ -4,18 +4,19 @@ import { useState } from 'react';
 import { addDoc, collection } from 'firebase/firestore';
 import { db, firebaseReady } from '@/lib/firebase';
 
-const GADS_ID = 'AW-18339496959';
-const GADS_LABEL = process.env.NEXT_PUBLIC_GADS_EARLY_ACCESS_LABEL || '';
+// Google Ads "Submit lead form" conversion. Fired after the waitlist write
+// succeeds, so a failed submit never counts as a lead. The email feeds enhanced
+// conversions — gtag hashes it in the browser before sending.
+const GADS_SEND_TO =
+  process.env.NEXT_PUBLIC_GADS_EARLY_ACCESS_SEND_TO || 'AW-18339496959/HP5NCLTlhtQcEP-H-qhE';
 
-// Google Ads conversion for an early-access signup. Needs the conversion label
-// from the Ads UI (Goals → Conversions → the action → tag setup) in
-// NEXT_PUBLIC_GADS_EARLY_ACCESS_LABEL; without it we still push a plain event
-// so the signup shows up in the tag's event stream.
 function trackSignup(email) {
   if (typeof window === 'undefined' || typeof window.gtag !== 'function') return;
   window.gtag('set', 'user_data', { email });
   window.gtag('event', 'conversion', {
-    send_to: GADS_LABEL ? `${GADS_ID}/${GADS_LABEL}` : GADS_ID,
+    send_to: GADS_SEND_TO,
+    value: 1.0,
+    currency: 'AED',
   });
 }
 
